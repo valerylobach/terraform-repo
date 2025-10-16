@@ -1,0 +1,33 @@
+name: Sync Master to Dev
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+      
+run-name: Sync to Master to Dev by @${{ github.actor }}
+
+jobs:
+  sync-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Merge master into dev
+        run: |
+          git checkout master
+          git fetch origin
+          git checkout dev
+          git pull
+          git merge origin/master
+          git push origin dev
