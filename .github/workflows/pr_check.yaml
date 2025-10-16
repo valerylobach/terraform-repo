@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - master
+      - dev
 run-name: Sync to Master to Dev by @${{ github.actor }}
 
 jobs:
