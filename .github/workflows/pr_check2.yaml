@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
       - master
       - dev
       
@@ -26,7 +25,7 @@ jobs:
 
       - name: Merge master into dev
         run: |
-          git checkout master
+         git checkout prod
           git fetch origin
           git checkout dev
           git pull
